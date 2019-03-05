@@ -18,7 +18,9 @@ var (
 
 func init() {
 	states_fn = map[string]StateFn{
-		"?":  lexHolder,
+		"?": lexHolder,
+		".": lexPeriod, //new
+
 		",":  lexComma,
 		";":  lexStetementEnd,
 		":":  lexColon,
@@ -32,7 +34,10 @@ func init() {
 		"}":  lexRBrace,
 		"%s": lexHolder,
 		"/*": lexMultiLineComment,
+		"//": lexSingleLineComment,
 		"--": lexSingleLineComment,
+
+		//"\\": lexStringExcapeComment,
 	}
 }
 
@@ -46,6 +51,12 @@ func state_filter2(lit string) StateFn {
 
 func state_filter1(lit string) StateFn {
 	return states_fn[lit]
+}
+
+func lexPeriod(lexer *TLexer) StateFn {
+	lexer.Next()
+	lexer.Emit(PERIOD)
+	return lexWhitespace
 }
 
 func lexComma(lexer *TLexer) StateFn {
@@ -135,8 +146,9 @@ func lexWhitespace(lexer *TLexer) StateFn {
 		return lexIdentifierOrKeyword
 
 	default:
-		lexer.Errorf("don't know what to do with '%s'", nextTwo)
-		return nil
+		return lexUnknown
+		//lexer.Errorf("don't know what to do with '%s'", nextTwo)
+		//return nil
 	}
 }
 
@@ -167,6 +179,15 @@ func lexMultiLineComment(lexer *TLexer) StateFn {
 	}
 }
 
+func lexStringExcapeComment(lexer *TLexer) StateFn {
+	return lexWhitespace
+}
+
+func lexUnknown(lexer *TLexer) StateFn {
+	lexer.Next()
+	lexer.Emit(UNKNOWN)
+	return lexWhitespace
+}
 func lexOperator(lexer *TLexer) StateFn {
 	lexer.AcceptWhile(isOperator)
 	lexer.Emit(OPERATOR)
@@ -196,6 +217,8 @@ func lexNumber(lexer *TLexer) StateFn {
 
 func lexString(lexer *TLexer) StateFn {
 	quote := lexer.Next()
+	lexer.Emit(QUOTES)
+
 	lexer.Ignore()
 	for {
 		n := lexer.Next()
@@ -215,9 +238,12 @@ func lexString(lexer *TLexer) StateFn {
 			if lexer.Peek() == quote {
 				lexer.Next()
 			} else {
+
 				lexer.Backup() //回退quote
 				lexer.Emit(STRING)
 				lexer.Next() //
+				lexer.Emit(QUOTES)
+
 				lexer.Ignore()
 				return lexWhitespace
 			}

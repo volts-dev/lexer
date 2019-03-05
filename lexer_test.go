@@ -2,12 +2,18 @@ package lexer
 
 import (
 	"fmt"
-	"strings"
+	"os"
 	"testing"
 )
 
 func TestMain(t *testing.T) {
-	lex, err := NewLexer(strings.NewReader("1.1+1=2"))
+	osfile, e := os.Open("./lexer_test_file.js")
+	if e != nil {
+		return
+	}
+	defer osfile.Close()
+
+	lex, err := NewLexer(osfile)
 	if err != nil {
 
 	}
@@ -20,5 +26,6 @@ func TestMain(t *testing.T) {
 
 		fmt.Println(PrintToken(token))
 	}
+
 	fmt.Println("complete")
 }

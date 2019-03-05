@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"strings"
+
 	//	"unicode"
 	"unicode/utf8"
 )
@@ -23,6 +24,7 @@ type (
 
 // lex creates a new scanner for the input string.
 func NewLexer(input io.Reader) (*TLexer, *Error) {
+
 	lexer := &TLexer{
 		input:  bufio.NewReader(input),
 		buffer: make([]rune, 0, 10),

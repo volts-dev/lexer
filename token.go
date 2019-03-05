@@ -59,7 +59,7 @@ const (
 	OPERATOR //operators like '=', '<>', etc.
 	KEYWORD  // SQL language keyword like SELECT, INSERT, etc.
 	SAPCE    // a run of spaces, tabs and newlines
-
+	UNKNOWN  // new
 	literal_beg
 	// Identifiers and basic type literals
 	// (these tokens stand for classes of literals)
@@ -69,6 +69,7 @@ const (
 	IMAG   // 123.45i
 	CHAR   // 'a'
 	STRING // "abc"
+	QUOTES // '' ""
 
 	literal_end
 
@@ -215,6 +216,10 @@ var (
 		IMAG:   "IMAG",   // 123.45i
 		CHAR:   "CHAR",   // 'a'
 		STRING: "STRING", // "abc"
+
+		QUOTES:    "QUOTES",
+		SEMICOLON: "SEMICOLON",
+		UNKNOWN:   "UNKNOWN",
 	}
 )
 
