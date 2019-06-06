@@ -44,6 +44,11 @@ func (self *TLexer) Run() {
 	close(self.Tokens)
 }
 
+// get the bufferPos
+func (self *TLexer) Pos() int {
+	return self.bufferPos
+}
+
 // next() returns the next rune in the input.
 func (self *TLexer) Next() rune {
 	if self.bufferPos < len(self.buffer) {
