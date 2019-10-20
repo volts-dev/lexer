@@ -226,6 +226,7 @@ func lexString(lexer *TLexer) StateFn {
 		// TODO 使用更好的回溯方法
 		// 未构成STRING
 		if n == EOF {
+			lexer.Backup()
 			lexer.Emit(UNKNOWN)
 			return lexWhitespace
 			//return lexer.Errorf("unterminated quoted string")
