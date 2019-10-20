@@ -223,9 +223,14 @@ func lexString(lexer *TLexer) StateFn {
 	for {
 		n := lexer.Next()
 
+		// TODO 使用更好的回溯方法
+		// 未构成STRING
 		if n == EOF {
-			return lexer.Errorf("unterminated quoted string")
+			lexer.Emit(UNKNOWN)
+			return lexWhitespace
+			//return lexer.Errorf("unterminated quoted string")
 		}
+
 		if n == '\\' {
 			//TODO: fix possible problems with NO_BACKSLASH_ESCAPES mode
 			if lexer.Peek() == EOF {
@@ -234,6 +239,7 @@ func lexString(lexer *TLexer) StateFn {
 			lexer.Next()
 		}
 
+		// 构成STRING
 		if n == quote {
 			if lexer.Peek() == quote {
 				lexer.Next()

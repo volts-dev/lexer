@@ -7,7 +7,7 @@ import (
 )
 
 func TestMain(t *testing.T) {
-	osfile, e := os.Open("./lexer_test_file.js")
+	osfile, e := os.Open("./lexer_test_file2.js")
 	if e != nil {
 		return
 	}
