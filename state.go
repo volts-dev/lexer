@@ -267,9 +267,10 @@ func lexIdentifierOrKeyword(lexer *TLexer) StateFn {
 			for {
 				n := lexer.Next()
 
-				if n == EOF {
-					return lexer.Errorf("unterminated quoted string")
-				} else if n == '`' {
+				//if n == EOF {
+				//	return lexer.Errorf("unterminated quoted string")
+				//} else if n == '`' {
+				if n == '`' {
 					if lexer.Peek() == '`' {
 						lexer.Next()
 					} else {

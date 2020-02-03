@@ -209,5 +209,13 @@ export const createMarker = () => document.createComment('');
  *    * (") then any non-("), or
  *    * (') then any non-(')
  */
+
+//# 测试
+    ::slotted(.cp-breadcrumb)>li+li:before {
+        content: "/\00a0"; // check
+        padding: 0 0px 0 5px;
+        color: #777777;
+    }
 export const lastAttributeNameRegex = /([ \x09\x0a\x0c\x0d])([^\0-\x1F\x7F-\x9F "'>=/]+)([ \x09\x0a\x0c\x0d]*=[ \x09\x0a\x0c\x0d]*(?:[^ \x09\x0a\x0c\x0d"'`<>=]*|"[^"]*|'[^']*))$/;
 //# sourceMappingURL=template.js.map
+

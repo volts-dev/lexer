@@ -11,6 +11,8 @@ import (
 	"unicode/utf8"
 )
 
+// NOTE 分析程序必须保障数据不缺失
+
 type (
 	TLexer struct {
 		state             StateFn       // the next lexing function to enter
