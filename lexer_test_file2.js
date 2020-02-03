@@ -1,3 +1,14 @@
+/*测试字符串*/
+export const formStyles = css`
+  .form_sheet {
+    background: white;
+    min-height: 330px;
+    padding: 16px;
+    -moz-box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  }`;
+
 /**
  * @license
  * Copyright (c) 2017 The Polymer Project Authors. All rights reserved.

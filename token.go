@@ -225,7 +225,7 @@ var (
 
 func PrintToken(t TToken) string {
 	if TokenNames[t.Type] != "" {
-		return fmt.Sprintf(">> %q('%q')", TokenNames[t.Type], t.Val)
+		return fmt.Sprintf(">> %q => %q ", TokenNames[t.Type], t.Val)
 	}
 
 	return ""
