@@ -29,7 +29,7 @@ const (
 )
 
 const (
-	EOF = -1 // 必须等于-1 详细见isEndOfLine
+	EOF = -1 // 必须等于-1 详细见 isEndOfLine
 	// base token for common
 	TokenError = iota // error occurred; value is text of error
 	//TokenEOF                      // end of the file

@@ -7,7 +7,8 @@ export const formStyles = css`
     -moz-box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     -webkit-box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  }`;
+  }
+`;
 
 /**
  * @license
