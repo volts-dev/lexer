@@ -33,7 +33,7 @@ const (
 	// base token for common
 	TokenError = iota // error occurred; value is text of error
 	//TokenEOF                      // end of the file
-	TokenWhitespace        // a run of spaces, tabs and newlines
+	//TokenWhitespace        // a run of spaces, tabs and newlines
 	TokenSingleLineComment // A comment like --
 	TokenMultiLineComment  // A multiline comment like /* ... */
 	TokenKeyword           // SQL language keyword like SELECT, INSERT, etc.
@@ -189,22 +189,22 @@ func Precedence(t *TToken) int {
 
 var (
 	TokenNames = map[int]string{
-		TokenError:      "error",
-		EOF:             "EOF",
-		ILLEGAL:         "ILLEGAL",
-		COMMENT:         "COMMENT",
-		KEYWORD:         "KEYWORD",
-		OPERATOR:        "OPERATOR",
-		COLON:           "COLON",
-		COMMA:           "COMMA",
-		LPAREN:          "left_paren",
-		RPAREN:          "right_paren",
-		LBRACK:          "LBRACK",
-		RBRACK:          "RBRACK",
-		LBRACE:          "LBRACE",
-		RBRACE:          "RBRACE",
-		SAPCE:           "SAPCE",
-		TokenWhitespace: "space",
+		TokenError: "error",
+		EOF:        "EOF",
+		ILLEGAL:    "ILLEGAL",
+		COMMENT:    "COMMENT",
+		KEYWORD:    "KEYWORD",
+		OPERATOR:   "OPERATOR",
+		COLON:      "COLON",
+		COMMA:      "COMMA",
+		LPAREN:     "left_paren",
+		RPAREN:     "right_paren",
+		LBRACK:     "LBRACK",
+		RBRACK:     "RBRACK",
+		LBRACE:     "LBRACE",
+		RBRACE:     "RBRACE",
+		SAPCE:      "SAPCE",
+		//TokenWhitespace: "space",
 		//TokenStatementStart: "statement_start",
 		//TokenStetementEnd: "statement_end",
 		PERIOD: "PERIOD",
